@@ -3,6 +3,8 @@
 ## Overview
 This project is a Go-based GraphQL service that fetches and filters material and supplier details from external APIs. It helps customers find the best materials based on price, rating, and quality within their locality.
 
+**From Given APIs very less data points match the requirements and return the response.**
+
 ## Tech Stack
 - **Golang** (Go)
 - **gqlgen** (GraphQL library)
