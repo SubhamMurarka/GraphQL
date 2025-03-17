@@ -7,9 +7,10 @@ This project is a Go-based GraphQL service that fetches and filters material and
 - **Golang** (Go)
 - **gqlgen** (GraphQL library)
 - **Redis** (Caching)
-- **Goroutines** (Concurrent API calls)
+- **Goroutines** (Concurrent API calls for MaterialsAPI, SupplierAPI)
 - **Repository Pattern** (For clean architecture)
 - **Docker** (For containerization)
+- **Testing**
 
 ## Features
 - **GraphQL API**: Query-based data retrieval.
