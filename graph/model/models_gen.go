@@ -3,7 +3,6 @@
 package model
 
 type Material struct {
-	ID           int32   `json:"id"`
 	MaterialName string  `json:"materialName"`
 	MaterialType string  `json:"materialType"`
 	Price        float64 `json:"price"`
@@ -15,7 +14,6 @@ type Query struct {
 }
 
 type Supplier struct {
-	ID                int32  `json:"id"`
 	SupplierName      string `json:"supplierName"`
 	SupplierLocation  string `json:"supplierLocation"`
 	StockAvailability string `json:"stockAvailability"`

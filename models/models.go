@@ -1,7 +1,6 @@
 package models
 
 type MaterialAPI struct {
-	ID           int32   `json:"id"`
 	MaterialName string  `json:"materialName"`
 	MaterialType string  `json:"materialType"`
 	Price        float64 `json:"price"`
@@ -15,14 +14,12 @@ type MaterialItemAPI struct {
 }
 
 type SupplierAPI struct {
-	ID               int                          `json:"id"`
 	SupplierName     string                       `json:"supplierName"`
 	SupplierLocation string                       `json:"supplierLocation"`
 	Materials        map[string][]MaterialItemAPI `json:"materials"`
 }
 
 type Supplier struct {
-	ID                int
 	SupplierName      string
 	SupplierLocation  string
 	StockAvailability string

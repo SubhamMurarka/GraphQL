@@ -80,7 +80,6 @@ func (s *materialService) GetMaterialAndSupplier(materialType string, price floa
 				}
 
 				supplierResp := models.Supplier{
-					ID:                supplier.ID,
 					SupplierName:      supplier.SupplierName,
 					SupplierLocation:  supplier.SupplierLocation,
 					StockAvailability: "Available",

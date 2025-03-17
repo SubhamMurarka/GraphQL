@@ -17,10 +17,17 @@ import (
 )
 
 func main() {
+
+	redisClient, err := config.NewRedisDatabase()
+	if err != nil {
+		log.Printf("error connecting to redis : %v", err)
+	}
+
+	cacheClient := repository.NewCache(redisClient)
 	repo := repository.NewMaterialRepository()
 	svc := service.NewMaterialService(repo)
 
-	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{MaterialSvc: svc}}))
+	srv := handler.New(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{MaterialSvc: svc, Cache: cacheClient}}))
 
 	srv.AddTransport(transport.Options{})
 	srv.AddTransport(transport.GET{})

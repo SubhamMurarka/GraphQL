@@ -25,6 +25,12 @@ func (r *queryResolver) BestMaterial(ctx context.Context, request model.UserRequ
 		return nil, gqlerror.Errorf("input validation failed : %v", err)
 	}
 
+	//if cache hit then respond
+	cachedResp, err := r.Cache.GetMaterialAndSupplierCache(request.MaterialType, request.Price, request.Locality)
+	if err == nil {
+		return &cachedResp, nil
+	}
+
 	materialRepo, supplierRepo, err := r.MaterialSvc.GetMaterialAndSupplier(request.MaterialType, request.Price, request.Locality)
 	if err != nil {
 		return nil, gqlerror.Errorf("failed to fetch the details : %v", err)
@@ -33,7 +39,6 @@ func (r *queryResolver) BestMaterial(ctx context.Context, request model.UserRequ
 	fmt.Println("materialRepo: ", materialRepo, "\n\n SupplierRepo", supplierRepo)
 
 	Supplier := &model.Supplier{
-		ID:                int32(supplierRepo.ID),
 		SupplierName:      supplierRepo.SupplierName,
 		SupplierLocation:  supplierRepo.SupplierLocation,
 		StockAvailability: supplierRepo.StockAvailability,
@@ -43,6 +48,9 @@ func (r *queryResolver) BestMaterial(ctx context.Context, request model.UserRequ
 		Material: (*model.Material)(&materialRepo),
 		Supplier: Supplier,
 	}
+
+	//caching the response
+	r.Cache.CacheResponse(&request, resp)
 
 	return resp, nil
 }

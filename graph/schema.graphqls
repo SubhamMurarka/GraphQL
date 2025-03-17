@@ -9,7 +9,6 @@ input UserRequest {
 }
 
 type Material {
-  id: Int!
   materialName: String!
   materialType: String!
   price: Float!
@@ -18,7 +17,6 @@ type Material {
 }
 
 type Supplier {
-  id: Int!
   supplierName: String!
   supplierLocation: String!
   stockAvailability: String!

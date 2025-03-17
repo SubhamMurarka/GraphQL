@@ -1,6 +1,7 @@
 package graph
 
 import (
+	"github.com/subhammurarka/GraphQL/repository"
 	"github.com/subhammurarka/GraphQL/service"
 )
 
@@ -10,4 +11,5 @@ import (
 
 type Resolver struct {
 	MaterialSvc service.MaterialService
+	Cache       repository.CacheInterface
 }

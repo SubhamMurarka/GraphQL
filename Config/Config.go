@@ -22,7 +22,7 @@ func init() {
 	_ = godotenv.Load(".env")
 	// Initialize Configuration
 	Config = &AppConfig{
-		RedisHost:   getEnv("REDIS_HOST", "localhost"),
+		RedisHost:   getEnv("REDIS_HOST", "redis"),
 		RedisPort:   getEnv("REDIS_PORT", "6379"),
 		ServerPort:  getEnv("SERVER_PORT_USER", "8081"),
 		ServerHost:  getEnv("SERVER_HOST_USER", "0.0.0.0"),
@@ -32,7 +32,6 @@ func init() {
 }
 
 // to explicity define values for variables if value not set in .env
-
 func getEnv(key, defaultValue string) string {
 	if value, exists := os.LookupEnv(key); exists {
 		if value == "" {
